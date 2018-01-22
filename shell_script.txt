@@ -1,0 +1,11 @@
+for file in * ; do
+  if [ -f "$file" ] ; then
+    ext=${file##*.}
+    name=${file%.*}
+    name2=$(echo -ne "$name"| sed -e 's/#/\\/g')
+    new_name=$(echo -ne "$name2")
+    if [[ $name != $new_name ]] ; then
+       mv -v "$name.$ext" "$new_name.$ext"
+    fi
+  fi
+done
